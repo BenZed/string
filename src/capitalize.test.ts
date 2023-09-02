@@ -15,14 +15,12 @@ for (const string of [
     'عل إيو',
     ''
 ]) {
-
     const capitalizedString = string
         .split('')
-        .map((char, i) => i === 0 ? char.toUpperCase() : char)
+        .map((char, i) => (i === 0 ? char.toUpperCase() : char))
         .join('')
 
     test(`"${string}" -> "${capitalizedString}"`, () => {
         expect(capitalize(string)).toBe(capitalizedString)
     })
 }
-

@@ -1,14 +1,13 @@
 import toCamelCase from './to-camel-case'
 import { it, expect, describe } from '@jest/globals'
 
-
 describe('camelCases a string', () => {
     const tests = [
         { in: 'whatever', out: 'whatever' },
         { in: 'a', out: 'a' },
         { in: 'ace-of-base', out: 'aceOfBase' },
         { in: 'one-two-three', out: 'oneTwoThree' },
-        { in: 'foo--bar', out: 'fooBar' },
+        { in: 'foo--bar', out: 'fooBar' }
     ]
 
     for (const test of tests) {
@@ -19,9 +18,7 @@ describe('camelCases a string', () => {
 })
 
 describe('limiter argument', () => {
-
-    describe('changes default limiter (from \'-\' to \' \' in this case)', () => {
-
+    describe("changes default limiter (from '-' to ' ' in this case)", () => {
         const tests = [
             { in: 'what  you  lookin  at', out: 'whatYouLookinAt' },
             { in: 'chick and beans baby', out: 'chickAndBeansBaby' },
@@ -38,7 +35,6 @@ describe('limiter argument', () => {
     })
 
     describe('can also take a RegExp: /@|-|\\./', () => {
-
         const tests = [
             { in: 'some-body@gmail.com', out: 'someBodyGmailCom' },
             { in: 'see- @.saw', out: 'see Saw' }
@@ -50,13 +46,11 @@ describe('limiter argument', () => {
             })
         }
     })
-
 })
 
 describe('type safety', () => {
-
     it('returns strongly typed string representation inputs', () => {
-       toCamelCase('super man was here') satisfies 'superManWasHere'
+        toCamelCase('super man was here') satisfies 'superManWasHere'
     })
 
     it('string delimiters work', () => {
@@ -66,5 +60,4 @@ describe('type safety', () => {
     it('regexp delimiters do not', () => {
         toCamelCase('what$cash', /$/) satisfies string
     })
-
 })

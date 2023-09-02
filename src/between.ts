@@ -1,6 +1,6 @@
 /**
  * Gets a substring between the given delimiter(s).
- * 
+ *
  * ```typescript
  *  between('<tag><a>content</tag>', '<tag>', '</tag>') // 'content'
  * ```
@@ -10,27 +10,18 @@
  *
  * @return Substring of the source between the two markers. Empty string if nothing found.
  */
-function between(
-    str: string,
-    open: string,
-    close = open
-): string {
-
-    if (!open || !close)
-        throw new Error('delimiters must not be empty')
+function between(str: string, open: string, close = open): string {
+    if (!open || !close) throw new Error('delimiters must not be empty')
 
     const openStartIndex = str.indexOf(open)
-    if (openStartIndex === -1)
-        return ''
+    if (openStartIndex === -1) return ''
 
     const openEndIndex = openStartIndex + open.length
 
     const closeLength = str.substring(openEndIndex).indexOf(close)
-    if (closeLength === -1)
-        return ''
+    if (closeLength === -1) return ''
 
     return str.substring(openEndIndex, openEndIndex + closeLength)
-
 }
 
 //// Exports ////

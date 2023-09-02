@@ -50,23 +50,23 @@ for (const strings of [
     },
     {
         in: 'SomeId#123',
-        out: 'some-id-123',
+        out: 'some-id-123'
     },
     {
         in: '123SomeAddress',
-        out: '123-some-address',
+        out: '123-some-address'
     },
     {
         in: 'some.address123',
-        out: 'some-address123',
+        out: 'some-address123'
     },
     {
         in: 'HeyMan123HowAreYou456',
-        out: 'hey-man123-how-are-you456',
+        out: 'hey-man123-how-are-you456'
     },
     {
         in: '123! Who do we appreciate? 456! We appreciate you!',
-        out: '123-who-do-we-appreciate-456-we-appreciate-you',
+        out: '123-who-do-we-appreciate-456-we-appreciate-you'
     },
     {
         in: 'd∂lm@t10n!',

@@ -6,29 +6,29 @@ import { isBigInt, isNaN, isInteger } from '@benzed/types'
 interface DecimalOptions {
     /**
      * Number of decimal places to round to.
-     * 
+     *
      * ```ts
      * digitize(2.12512, { decimalPlaces: 3 })
      * // '2.125'
-     * 
+     *
      * ```
-     * 
+     *
      * Output is rounded.
      * ```ts
      * digitize(2.137, { decimalPlaces: 2 })
-     * // '2.14' 
+     * // '2.14'
      * ```
      */
     decimalPlaces: number
 
     /**
      * Add trailing zeros to fill the number of decimal places.
-     * 
+     *
      * ```ts
      * digitize(7.1, { decimalPlaces: 2, trailingZeros: true })
      * // '7.10'
-     * 
-     * ``` 
+     *
+     * ```
      */
     trailingZeros?: boolean
 }
@@ -37,11 +37,11 @@ interface WholeOptions {
     /**
      * Ensure leading zeros to the beginning of the
      * output to this number of places.
-     * 
+     *
      * ```ts
      * digitize(12, { wholePlaces: 5 })
      * // '00012'
-     * 
+     *
      * digitize(100, { wholePlaces: 2 })
      * // '100'
      * ```
@@ -51,7 +51,7 @@ interface WholeOptions {
     /**
      * Truncate numbers that have more than the
      * given number of leading zeros.
-     * 
+     *
      * ```ts
      * digitize(1234, { wholePlaces: 2, truncateWhole: true })
      * // '34'
@@ -59,14 +59,16 @@ interface WholeOptions {
     truncateWhole?: boolean
 }
 
-type DigitizeOptions = DecimalOptions | WholeOptions | (DecimalOptions & WholeOptions)
+type DigitizeOptions =
+    | DecimalOptions
+    | WholeOptions
+    | (DecimalOptions & WholeOptions)
 
 //// Helper ////
 
 function parseOptions(
     input?: DigitizeOptions
 ): Partial<DecimalOptions> & Partial<WholeOptions> {
-
     const hasDecimalOptions = input && 'decimalPlaces' in input
     const hasWholeOptions = input && 'wholePlaces' in input
 
@@ -93,18 +95,12 @@ function digitize(
     num: number | bigint,
     options?: DigitizeOptions
 ): `${number}` {
-
     // Parse Options
-    const {
-        decimalPlaces,
-        trailingZeros,
-        wholePlaces,
-        truncateWhole
-    } = parseOptions(options)
+    const { decimalPlaces, trailingZeros, wholePlaces, truncateWhole } =
+        parseOptions(options)
 
     // Process input
-    if (!isBigInt(num) && (!isFinite(num) || isNaN(num)))
-        num = 0
+    if (!isBigInt(num) && (!isFinite(num) || isNaN(num))) num = 0
 
     if (!isBigInt(num) && decimalPlaces !== undefined) {
         const precision = 1 / 10 ** decimalPlaces
@@ -116,23 +112,17 @@ function digitize(
 
     // Apply Whole Options
     if (wholePlaces !== undefined) {
-        whole = whole
-            .padStart(wholePlaces, '0')
+        whole = whole.padStart(wholePlaces, '0')
         whole = truncateWhole
-            ? whole
-                .substring(whole.length - wholePlaces, whole.length)
+            ? whole.substring(whole.length - wholePlaces, whole.length)
             : whole
     }
 
     // Apply Decimal Options
     if (decimalPlaces !== undefined) {
-        decimal = decimal
-            .substring(0, decimalPlaces)
+        decimal = decimal.substring(0, decimalPlaces)
 
-        decimal = trailingZeros
-            ? decimal
-                .padEnd(decimalPlaces, '0')
-            : decimal
+        decimal = trailingZeros ? decimal.padEnd(decimalPlaces, '0') : decimal
     }
 
     return `${whole}${decimal && '.' + decimal}` as `${number}`
@@ -142,7 +132,4 @@ function digitize(
 
 export default digitize
 
-export {
-    digitize,
-    DigitizeOptions
-}
+export { digitize, DigitizeOptions }

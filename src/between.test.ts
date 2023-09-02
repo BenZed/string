@@ -29,4 +29,3 @@ it('throws if delimiters are empty strings', () => {
     expect(() => between(str, '')).toThrow('delimiters must not be empty')
     expect(() => between(str, '<', '')).toThrow('delimiters must not be empty')
 })
-
