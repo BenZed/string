@@ -1,4 +1,4 @@
-import { isBoolean, isNumber, isObject, isOptional } from '@benzed/types'
+import { isBoolean, isNumber, isObject } from '@benzed/types'
 
 //// Types ////
 
