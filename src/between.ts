@@ -1,5 +1,5 @@
 /**
- * Gets a substring between the given delimeter(s).
+ * Gets a substring between the given delimiter(s).
  * 
  * ```typescript
  *  between('<tag><a>content</tag>', '<tag>', '</tag>') // 'content'
@@ -17,7 +17,7 @@ function between(
 ): string {
 
     if (!open || !close)
-        throw new Error('delimeters must not be empty')
+        throw new Error('delimiters must not be empty')
 
     const openStartIndex = str.indexOf(open)
     if (openStartIndex === -1)

@@ -9,12 +9,12 @@
  * @param str String to capitalize, `undefined` or `null` will return `''`.
  * 
  */
-function capitalize<S extends string>(str: S): Capitalize<S> {
+function capitalize<S extends string>(str: S) {
 
     const firstLetter = str.charAt(0)
-    const restOfTheString = str.slice(1)
+    const remainingLetters = str.slice(1)
 
-    return firstLetter.toUpperCase() + restOfTheString as Capitalize<S>
+    return firstLetter.toUpperCase() + remainingLetters as Capitalize<S>
 }
 
 //// Exports ////

@@ -1,5 +1,4 @@
 import toDashCase from './to-dash-case'
-import { expectTypeOf } from 'expect-type'
 import { test, it, expect } from '@jest/globals'
 
 //// Setup ////
@@ -81,8 +80,8 @@ for (const strings of [
 
 it('is type safe', () => {
     const out = toDashCase('fooBar')
-    expectTypeOf(out).toEqualTypeOf<'foo-bar'>()
+    out satisfies 'foo-bar'
 
     const generic = toDashCase('unsureWhatThisIs' as string)
-    expectTypeOf(generic).toEqualTypeOf<string>()
+    generic satisfies string
 })

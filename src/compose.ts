@@ -1,4 +1,4 @@
-import { nil, through as isTruthy } from '@benzed/util'
+import { nil, isTruthy } from '@benzed/types'
 
 //// Helper ////
 

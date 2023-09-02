@@ -1,5 +1,5 @@
 import { round } from '@benzed/math'
-import { isBigInt, isNaN, isInteger } from '@benzed/util'
+import { isBigInt, isNaN, isInteger } from '@benzed/types'
 
 //// Types ////
 

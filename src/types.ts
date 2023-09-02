@@ -2,13 +2,13 @@
 /**
  * Convert a given type to a string representation, or an empty string if that is not possible  
  */
-export type ToString<S, Vf extends string = '' /* (V)alue to use if conversion (f)ails*/> = 
+export type ToString<S, Vf extends string = '' /* value to use if conversion (f)ails*/> = 
     S extends string ? S 
         : S extends number | boolean | bigint ? `${S}` 
             : Vf
 
 /**
-* Convert a string type to string[] type, split by delimeter
+* Convert a string type to string[] type, split by delimiter
 */
 export type Split<S extends string, D extends string> =
     string extends S ? string[] :

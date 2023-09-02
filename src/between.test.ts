@@ -5,11 +5,11 @@ import { it, expect } from '@jest/globals'
 
 const str = '{one}, (two), [three], |four|, <!--five-->, <SIX/>'
 
-it('returns the content between and open and closing delimeter', () => {
+it('returns the content between and open and closing delimiter', () => {
     expect(between(str, '[', ']')).toBe('three')
 })
 
-it('close delimeter is same as open delimeter if not provided', () => {
+it('close delimiter is same as open delimiter if not provided', () => {
     expect(between(str, '|')).toBe('four')
 })
 
@@ -25,8 +25,8 @@ it('returns "" if close delimiter can\'t be found', () => {
     expect(between(str, '<', '!>')).toBe('')
 })
 
-it('throws if delimeters are empty strings', () => {
-    expect(() => between(str, '')).toThrow('delimeters must not be empty')
-    expect(() => between(str, '<', '')).toThrow('delimeters must not be empty')
+it('throws if delimiters are empty strings', () => {
+    expect(() => between(str, '')).toThrow('delimiters must not be empty')
+    expect(() => between(str, '<', '')).toThrow('delimiters must not be empty')
 })
 

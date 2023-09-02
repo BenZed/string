@@ -4,11 +4,13 @@
     "main": "./lib",
     "version": "4.0.0",
     "scripts": {
-        "test": "jest --run-in-band --all",
-        "test:dev": "jest --run-in-band --only-changed --verbose",
+        "update": "npx npm-check -u",
+        "test": "jest --run-in-band --coverage --all",
+        "test:dev": "jest --run-in-band --only-changed --watch --verbose --coverage",
+        "tsc": "shx rm -rf lib && tsc",
         "lint": "eslint src/**/*.ts --fix",
-        "build": "npm run lint && npm run tsc",
-        "tsc": "shx rm -rf lib && shx mkdir lib && tsc"
+        "build": "npm run test && npm run lint && npm run tsc",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",
@@ -33,5 +35,9 @@
         "shx": "0.3.4",
         "ts-jest": "^29.0.3",
         "typescript": "^5.1.3"
+    },
+    "dependencies": {
+        "@benzed/types": "^1.4.0",
+        "@benzed/math": "^4.0.0"
     }
 }

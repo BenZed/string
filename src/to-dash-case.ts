@@ -37,7 +37,7 @@ function fromCamelCase(
 ): string {
 
     let output = ''
-    let prevCharIsCaseable = false
+    let prevCharIsCaseAble = false
     let prevCharIsDigit = false
     for (let i = 0; i < input.length; i++) {
 
@@ -45,9 +45,9 @@ function fromCamelCase(
         const charUp = char.toUpperCase()
         const charLo = char.toLowerCase()
         const isDigit = char >= '0' && char <= '9'
-        const isCaseable = charUp !== charLo
+        const isCaseAble = charUp !== charLo
 
-        const isUpper = isCaseable && char === charUp
+        const isUpper = isCaseAble && char === charUp
         const outputIsEmpty = output.length === 0
 
         // Dashes should:
@@ -55,16 +55,16 @@ function fromCamelCase(
         // - NOT be first or last character in output
         // - NOT appear more than once consecutively
         const requiresDash =
-            isUpper && prevCharIsCaseable ||
-            isDigit && (!prevCharIsCaseable && !prevCharIsDigit && !outputIsEmpty) ||
-            isCaseable && !prevCharIsCaseable && !outputIsEmpty
+            isUpper && prevCharIsCaseAble ||
+            isDigit && (!prevCharIsCaseAble && !prevCharIsDigit && !outputIsEmpty) ||
+            isCaseAble && !prevCharIsCaseAble && !outputIsEmpty
         if (requiresDash)
             output += dash
 
-        if (isCaseable || isDigit)
+        if (isCaseAble || isDigit)
             output += charLo
 
-        prevCharIsCaseable = isCaseable
+        prevCharIsCaseAble = isCaseAble
         prevCharIsDigit = isDigit
     }
 
